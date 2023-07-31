@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Post Media</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"rel="stylesheet">
+</head>
+  <body>
+    <div class="container-fluid" >
+        <div class="row" >
+            <div class="col-4">
+                <nav class="navbar"style="position:sticky;top:0">
+                    <div class="container-fluid">
+                        <div class="col border-end" >
+                            <div class="row">
+                                <div class="text-center col">
+                                    <img src="{{detail.prof_img.url}}" class="rounded" style = "margin-top:3px; height:200px; width:200px">
+                                    <p class = "h5 " style = "margin-top:8px;"> {{user.username}} </p>
+                                    <p class="h6 lead">
+                                        <em>"{{detail.status}}"</em>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row " style="padding-top:2%;width:102%">
+                                <div class="col  border-top" >
+                                    <div class="row">
+                                        <a href="/main"class="btn text-start" style="display:inline-flex;width:102%;">
+                                            <span class="material-icons-outlined "  >house</span>
+                                            <label class="h5 lead px-3">Home</label>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <a href="/createPost"class="btn text-start" style="display:inline-flex;width:102%;">
+                                            <span class="material-icons-outlined "  >control_point</span>
+                                            <label class="h5 lead px-3">Create Post</label>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <a href="/account" class="btn text-start" style="display:inline-flex;width:102%;">
+                                            <span class="material-icons-outlined">settings</span>
+                                            <label class=" h5 lead px-3">Account Settings</label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:43%;">
+                                <div class="col" style="padding-left: 8px;padding-right: 23px;">
+                                    <div class="row ">
+                                        <a href = '/logout' class="btn text-start border" style="display:inline-flex;margin-rigth:10%;">
+                                            <span class="material-icons-outlined "  >logout</span>
+                                            <label class=" h5 lead px-3" >Log Out</label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class = "col-8 " >
+                {% for post_d in post %}
+                <div class="row">
+                    <div class="card mb-3" style="max-width: 100%;margin-top:1%;">
+                        <nav class="navbar bg-body-tertiary " style="height:5;max-width: 100%;">
+                            <div class="container-fluid py-0" >
+                                <a class="navbar-brand" href="/profile/{{post_d.user}}">
+                                    <img src="{{detail.prof_img.url}}" alt="Logo" width="50" height="40" class="d-inline" style="border-radius:10px">
+                                        {% comment %} <label style="margin-left:2%;display:inline">Username</label> {% endcomment %}
+                                        <small class="text-body-secondary"style="font-size:14px"><em>(Posted on : {{post_d.timePosted}})</em></small>
+                                        {% comment %} <h6 class="d-inline"style="opacity:0.7"> <em>(DD/MM/YYYY)</em></h6> {% endcomment %}
+                                </a>
+                            </div>
+                        </nav>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src= "{{post_d.postImg.url}}" class="img-fluid rounded-start" style = "height:282px ; width:350px;opacity:0.8">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body" >
+                                    <h5 class="card-title">{{post_d.title}}</h5>
+                                    <textarea class="form-control my-4" aria-label="With textarea" placeholder="Post Description"aria-label="Post Description" rows ="5" style="resize: none"disabled>{{post_d.description}}</textarea>
+                                        <button  class="btn" disabled>
+                                            <span class="material-icons-outlined">thumb_up</span>
+                                            <label>{{post_d.likes}}</label>
+                                        </button>
+                                        <a href="/del_id?del_id={{post_d.id}}" class="btn">
+                                            <span class="material-icons-outlined" >delete</span>
+                                        </a>
+                                    
+                                    {% comment %} <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>

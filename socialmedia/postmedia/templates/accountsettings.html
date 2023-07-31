@@ -1,0 +1,27 @@
+{% extends 'post.html' %}
+{% block body%}
+<div class = "col-8">
+    <div class="card px-2 py-2 my-4" style="width: 60%;">
+        <img src="{{detail.prof_img.url}}" style="width: 250px; height:300px"class="card-img-top" alt="...">
+        <form class = "py-2" method = "POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h6 class="card-title">{{user.email}}</h6>
+            <div class="input-group py-2">
+                <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name = "img_prof" aria-label="Upload" accept="image/*">
+                {% comment %} <button class="btn btn-outline-secondary" type="button"  id="inputGroupFileAddon04"disabled>Upload Profile Image</button> {% endcomment %}
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"><u><strong>Status</strong></u></label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Your Status" value = "{{detail.status}}" name = "status" aria-describedby="emailHelp">
+                {% comment %} <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> {% endcomment %}
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"><u><strong>Bio</strong></u></label>
+                <textarea class="form-control" aria-label="With textarea" name = "bio" placeholder="Your Bio"aria-label="Post Description" rows ="5"style="resize: none">{{detail.bio}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock body%}
+                                {% comment %} <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsUNceR8jbqHa2R3491RxiE8Nmcy8PHiFLTfF_OQ6xng&s" class="rounded" style = "margin-top:5px; height:200px; width:200px"> {% endcomment %}

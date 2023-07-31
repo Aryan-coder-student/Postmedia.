@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Postmedia.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+  <body>
+    <nav class="navbar bg-body-tertiary" style="position:sticky;top:0;z-index:1" >
+        <div class="container-fluid">
+            <div class = "col-2">
+                <label class="h3"><a href = "/main" class = "text-dark"><u>Postmedia</u></a><small>. </small></label>
+            </div>
+            <div class="col-2 text-end">
+                <label class="h5">@{{user.username}}</label>
+                <a href="/profile/{{user.username}}"><img class = "rounded-circle"src="{{u_d.prof_img.url}}" alt="Bootstrap" width="40" height="30"></a>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-3">
+        {% if u_User == "" %}
+        <label class = h3>{{noone}}</label>
+        {% else %}
+        <div class="card mb-3" style="max-width: 540px;margin-left:25%">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{u_d_s.prof_img.url}}" class="img-fluid rounded-start" alt="..." style = "height:219px ; width:300px">
+                </div>
+                <div class="col-8 ">
+                    <a href="/profile/{{u_User.username}}" class = "text-dark">
+                        <div class="card-body">
+                            <h5 class="card-title py-0"><u>{{u_User.username}}</u></h5>
+                            <textarea class = "px-3" style = "font-size : 10px ;resize: none;"row="1" disabled>"{{u_d_s.status}}"</textarea>
+                            <p class="card-text py-1"><u>Followings</u>: {{follow_1}}</p>
+                            <p class="card-text"><u>Followers</u>: {{follow}}</p>
+                            <p class="card-text"><u>Total post</u>: {{p_d_l}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>

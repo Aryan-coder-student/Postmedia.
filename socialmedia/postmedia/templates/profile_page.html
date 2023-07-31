@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Post Media</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary" style="position:sticky;top:0;z-index:1" >
+        <div class="container-fluid">
+            <div class = "col-2">
+                <label class="h3"><u><a href = "/main" class = "text-dark">Postmedia</a></u><small>. </small></label>
+            </div>
+            <div class="col-2 text-end">
+                <label class="h5">@{{user.username}}</label>
+                <a href="/profile/{{user.username}}"><img class = "rounded-circle"src="{{p_d_img.prof_img.url}}" alt="Bootstrap" width="40" height="30"></a>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row border-bottom border-dark-subtle">
+            <div class="col-6">
+                <img src="{{u_s.prof_img.url}}" class="rounded" style="margin-top:5px; height:200px;display:inline; width:200px">
+                <label class="h6 lead px-2"><b><u>Followers</u></b>  : {{no_of_followers}}</label>
+                <label class="h6 lead"><b><u>Total Post</u></b>  : {{len}}</label>
+                <div class="container-fluid">
+                    {% comment %} {{current_user}} {{prof_user}} {% endcomment %}
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        {% if d.username == user.username %}
+                        <a href = "/home"  class="btn btn-dark my-4">
+                            <span class="material-icons-outlined">manage_accounts</span>
+                        </a>
+                        {% else %}
+                        <button name = "follow" type="submit" class="btn {{but_type}} my-4">
+                            <span class="material-icons-outlined">person_add</span>
+                        </button>
+                        {% endif %}
+                        <label class="h5 py-2 px-2" ><b>{{d.username}}</b></label>
+                    </form>
+                    <!-- <p class="h6 lead">("Status")</p> -->
+                </div>
+            </div>
+            <div class="col-4">
+                <textarea name="w3review" class = "my-2"rows="9" cols="50" style="resize: none;" disabled>{{u_s.bio}}</textarea>
+                <p class="h6 "><small><em>{{u_s.status}}</em></small></p>
+            </div>
+        </div>
+        {% comment %} <nav class="navbar bg-body-tertiary ">
+            <div class="container-fluid" >
+                <small class="text-body-secondary"style="font-size:14px"><em>(Posted on : DD/MM/YYYY)</em></small>
+            </div>
+        </nav> {% endcomment %}
+        <form method = "POST">
+            {% csrf_token %}
+            <input type="hidden" name="prof_name" value = {{d.username}}/>
+            <div class="row text-center">
+                {% for p_d in u_p %}
+                    <div class="col-4 my-2">
+                        <div class="card border" style="width:400px;">
+                            <img src="{{p_d.postImg.url}}" class="card-img-top" style ="width: 398px;height: 260px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{p_d.title}}</h5>
+                                <textarea name="w3review" rows="9" cols="45" style="resize: none;" disabled>{{p_d.description}}</textarea>
+                                    <button  class="btn" disabled>
+                                        <span class="material-icons-outlined">thumb_up</span>
+                                        <label><small>{{p_d.likes}}</small></label>
+                                        <!-- <label>{{post_d.likes}}</label> -->
+                                    </button>
+                                <small class="text-body-secondary"style="font-size:14px"><em>(Posted on : {{p_d.timePosted}})</em></small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </form>
+        </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="<KEY>"
+    crossorigin="anonymous"></script>
+
+</html>

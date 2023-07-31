@@ -1,0 +1,62 @@
+{% extends 'login.html' %}
+{% block body %}
+<div class = "container">
+    <form class = "border py-2 px-2 rounded border-dark" style="max-width:50%; margin-top:13%;margin-left:26%" method="post" action="">
+        {% csrf_token %}
+        <p class="h1 text-center"><u>Postmedia</u><small>. </small></p>
+        {% comment %} <p class="h6 text-center">(login Here)</p> {% endcomment %}
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <span class="material-icons-outlined "style="display: inline">badge</span>
+                    <input type="text" class="form-control border border-dark-subtle" id="exampleInputEmail1" name = "fname" placeholder="First Name"aria-describedby="emailHelp" required>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <span class="material-icons-outlined "style="display: inline">badge</span>
+                    <input type="text" class="form-control border border-dark-subtle" placeholder="Last name" name = "lname" id="exampleInputPassword1" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <span class="material-icons-outlined">account_circle</span>
+                    <input type="text" class="form-control border border-dark-subtle" placeholder="Username" name = "username" id="exampleInputPassword1" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <span class="material-icons-outlined "style="display: inline">email</span>
+                    <input type="mail" class="form-control border border-dark-subtle" placeholder="Email" name = "mail" id="exampleInputPassword1" required>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <span class="material-icons-outlined "style="display: inline">lock</span>
+                    <input type="Password" class="form-control border border-dark-subtle" placeholder="Password" name = "password" id="exampleInputPassword1" required>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <span class="material-icons-outlined "style="display: inline">lock</span>
+                    <input type="Password" class="form-control border border-dark-subtle" placeholder="Confirm Password" name = "confirmpassword" id="exampleInputPassword1" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3 form-check mx-6">
+                    <input type="checkbox" class="form-check-input " id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Agree Terms and Conditions</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark" name = "signin">Sign In</button>
+                    {% comment %} <button type="submit" class="btn btn-dark" name = "login">Log In</button>  {% endcomment %}
+                </div>
+            </div>
+        </div>
+            
+      </form>
+    </div>
+  </div>
+{% endblock body %}
